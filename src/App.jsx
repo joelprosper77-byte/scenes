@@ -213,7 +213,7 @@ function VideoCard({ video, isActive }) {
 
       {/* COMMENTS PANEL — fixed layout, input always visible */}
       {showComments && (
-        <div style={{
+  <div style={{
     position: 'fixed', bottom: 0, left: 0, right: 0,
     height: '70vh',
     background: 'rgba(10,0,21,0.98)',
@@ -315,7 +315,7 @@ function VideoCard({ video, isActive }) {
       ))}
     </div>
   </div>
-       )}
+      )}
     </div>
   )
 }
