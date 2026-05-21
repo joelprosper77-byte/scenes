@@ -6,7 +6,8 @@ const VIDEOS = [
   { id: 'video2', src: '/videos/video2.mp4', title: 'Behind The Scenes', desc: 'How we build digital experiences 🎬' },
   { id: 'video3', src: '/videos/video3.mp4', title: 'Our Vision', desc: "Africa's next generation of creators 🌍" },
   { id: 'video4', src: '/videos/video4.mp4', title: 'The Process', desc: 'From idea to reality 🚀' },
-  { id: 'video5', src: '/videos/video5.mp4', title: 'The Future', desc: "high quality ads for your business 💯" },
+  { id: 'video5', src: '/videos/video5.mp4', title: 'its just easy', desc: "join us to become a part of something big" },
+  { id: 'video6', src: '/videos/video6.mp4', title: 'The Future', desc: "high quality ads for your business 💯" },
 ]
 
 const EMOJIS = [
