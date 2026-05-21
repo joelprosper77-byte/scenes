@@ -272,53 +272,56 @@ function VideoCard({ video, isActive }) {
           </div>
 
           {/* Input — always pinned to bottom */}
-          <div style={{
-            flexShrink: 0,
-            padding: '12px 16px',
-            paddingBottom: 'max(12px, env(safe-area-inset-bottom))',
-            borderTop: '1px solid rgba(139,92,246,0.15)',
-            background: 'rgba(10,0,21,0.99)',
-            display: 'flex', flexDirection: 'column', gap: '8px',
-          }}>
-            <input
-              value={username}
-              onChange={e => setUsername(e.target.value)}
-              placeholder="Your name (optional)"
-              style={{
-                width: '100%', background: 'rgba(255,255,255,0.05)',
-                border: '1px solid rgba(139,92,246,0.2)',
-                borderRadius: '10px', padding: '9px 12px',
-                color: 'white', fontSize: '12px', outline: 'none',
-                boxSizing: 'border-box',
-              }}
-            />
-            <div style={{ display: 'flex', gap: '8px' }}>
-              <input
-                value={newComment}
-                onChange={e => setNewComment(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && handleComment()}
-                placeholder="Write a comment..."
-                style={{
-                  flex: 1, background: 'rgba(255,255,255,0.05)',
-                  border: '1px solid rgba(139,92,246,0.3)',
-                  borderRadius: '10px', padding: '10px 12px',
-                  color: 'white', fontSize: '13px', outline: 'none',
-                }}
-              />
-              <button onClick={handleComment} style={{
-                background: 'linear-gradient(135deg, #7c3aed, #4f46e5)',
-                border: 'none', borderRadius: '10px',
-                padding: '10px 16px', color: 'white',
-                fontSize: '13px', fontWeight: '700',
-                cursor: 'pointer', flexShrink: 0,
-              }}>Post</button>
-            </div>
-          </div>
-        </div>
+       <div style={{
+  flexShrink: 0,
+  padding: '8px 12px',
+  paddingBottom: 'max(8px, env(safe-area-inset-bottom))',
+  borderTop: '1px solid rgba(139,92,246,0.15)',
+  background: 'rgba(10,0,21,0.99)',
+  display: 'flex', flexDirection: 'column', gap: '6px',
+}}>
+  <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+    <input
+      value={username}
+      onChange={e => setUsername(e.target.value)}
+      placeholder="Name"
+      style={{
+        width: '90px', flexShrink: 0,
+        background: 'rgba(255,255,255,0.05)',
+        border: '1px solid rgba(139,92,246,0.2)',
+        borderRadius: '10px', padding: '10px 10px',
+        color: 'white', fontSize: '12px', outline: 'none',
+        boxSizing: 'border-box',
+      }}
+    />
+    <input
+      value={newComment}
+      onChange={e => setNewComment(e.target.value)}
+      onKeyDown={e => e.key === 'Enter' && handleComment()}
+      placeholder="Write a comment..."
+      style={{
+        flex: 1,
+        background: 'rgba(255,255,255,0.05)',
+        border: '1px solid rgba(139,92,246,0.3)',
+        borderRadius: '10px', padding: '10px 10px',
+        color: 'white', fontSize: '13px', outline: 'none',
+      }}
+    />
+    <button onClick={handleComment} style={{
+      background: 'linear-gradient(135deg, #7c3aed, #4f46e5)',
+      border: 'none', borderRadius: '10px',
+      padding: '10px 12px', color: 'white',
+      fontSize: '13px', fontWeight: '700',
+      cursor: 'pointer', flexShrink: 0,
+    }}>Post</button>
+  </div>
+       </div>
+      </div>
       )}
     </div>
   )
 }
+
 
 export default function App() {
   const [currentIndex, setCurrentIndex] = useState(0)
