@@ -213,111 +213,110 @@ function VideoCard({ video, isActive }) {
 
       {/* COMMENTS PANEL — fixed layout, input always visible */}
       {showComments && (
-        <div style={{
-          position: 'absolute', bottom: 0, left: 0, right: 0,
-          height: '72%',
-          background: 'rgba(10,0,21,0.98)',
-          border: '1px solid rgba(139,92,246,0.2)',
-          borderRadius: '24px 24px 0 0',
-          display: 'flex', flexDirection: 'column',
-          backdropFilter: 'blur(20px)',
-          overflow: 'hidden',
+  <div style={{
+    position: 'fixed', bottom: 0, left: 0, right: 0,
+    height: '75vh',
+    background: 'rgba(10,0,21,0.98)',
+    border: '1px solid rgba(139,92,246,0.2)',
+    borderRadius: '24px 24px 0 0',
+    display: 'flex', flexDirection: 'column',
+    backdropFilter: 'blur(20px)',
+    overflow: 'hidden',
+    zIndex: 999,
+  }}>
+
+    {/* Header */}
+    <div style={{
+      flexShrink: 0,
+      display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+      padding: '14px 16px',
+      borderBottom: '1px solid rgba(139,92,246,0.15)',
+    }}>
+      <h4 style={{ color: '#c4b5fd', fontSize: '14px', fontWeight: '700' }}>
+        💬 Comments ({comments.length})
+      </h4>
+      <button onClick={() => setShowComments(false)} style={{
+        background: 'none', border: 'none',
+        color: 'rgba(255,255,255,0.5)',
+        fontSize: '22px', cursor: 'pointer', lineHeight: 1,
+      }}>×</button>
+    </div>
+
+    {/* Scrollable comments */}
+    <div style={{
+      flex: 1, overflowY: 'auto',
+      padding: '12px 16px',
+      display: 'flex', flexDirection: 'column', gap: '10px',
+    }}>
+      {comments.length === 0 && (
+        <p style={{
+          color: 'rgba(255,255,255,0.3)', fontSize: '13px',
+          textAlign: 'center', marginTop: '20px',
         }}>
-
-          {/* Header — fixed top */}
-          <div style={{
-            flexShrink: 0,
-            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-            padding: '14px 16px',
-            borderBottom: '1px solid rgba(139,92,246,0.15)',
-          }}>
-            <h4 style={{ color: '#c4b5fd', fontSize: '14px', fontWeight: '700' }}>
-              💬 Comments ({comments.length})
-            </h4>
-            <button onClick={() => setShowComments(false)} style={{
-              background: 'none', border: 'none',
-              color: 'rgba(255,255,255,0.5)',
-              fontSize: '22px', cursor: 'pointer', lineHeight: 1,
-            }}>×</button>
-          </div>
-
-          {/* Scrollable comment list */}
-          <div style={{
-            flex: 1, overflowY: 'auto',
-            padding: '12px 16px',
-            display: 'flex', flexDirection: 'column', gap: '10px',
-          }}>
-            {comments.length === 0 && (
-              <p style={{
-                color: 'rgba(255,255,255,0.3)', fontSize: '13px',
-                textAlign: 'center', marginTop: '20px',
-              }}>
-                No comments yet. Be the first! 🌟
-              </p>
-            )}
-            {comments.map(c => (
-              <div key={c.id} style={{
-                background: 'rgba(139,92,246,0.08)',
-                border: '1px solid rgba(139,92,246,0.15)',
-                borderRadius: '12px', padding: '10px 12px', flexShrink: 0,
-              }}>
-                <p style={{ color: '#a78bfa', fontSize: '11px', fontWeight: '700', marginBottom: '4px' }}>
-                  @{c.username}
-                </p>
-                <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '13px', lineHeight: 1.4 }}>
-                  {c.comment}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* Input — always pinned to bottom */}
-       <div style={{
-  flexShrink: 0,
-  padding: '8px 12px',
-  paddingBottom: 'max(8px, env(safe-area-inset-bottom))',
-  borderTop: '1px solid rgba(139,92,246,0.15)',
-  background: 'rgba(10,0,21,0.99)',
-  display: 'flex', flexDirection: 'column', gap: '6px',
-}}>
-  <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-    <input
-      value={username}
-      onChange={e => setUsername(e.target.value)}
-      placeholder="Name"
-      style={{
-        width: '90px', flexShrink: 0,
-        background: 'rgba(255,255,255,0.05)',
-        border: '1px solid rgba(139,92,246,0.2)',
-        borderRadius: '10px', padding: '10px 10px',
-        color: 'white', fontSize: '12px', outline: 'none',
-        boxSizing: 'border-box',
-      }}
-    />
-    <input
-      value={newComment}
-      onChange={e => setNewComment(e.target.value)}
-      onKeyDown={e => e.key === 'Enter' && handleComment()}
-      placeholder="Write a comment..."
-      style={{
-        flex: 1,
-        background: 'rgba(255,255,255,0.05)',
-        border: '1px solid rgba(139,92,246,0.3)',
-        borderRadius: '10px', padding: '10px 10px',
-        color: 'white', fontSize: '13px', outline: 'none',
-      }}
-    />
-    <button onClick={handleComment} style={{
-      background: 'linear-gradient(135deg, #7c3aed, #4f46e5)',
-      border: 'none', borderRadius: '10px',
-      padding: '10px 12px', color: 'white',
-      fontSize: '13px', fontWeight: '700',
-      cursor: 'pointer', flexShrink: 0,
-    }}>Post</button>
-  </div>
-       </div>
-      </div>
+          No comments yet. Be the first! 🌟
+        </p>
       )}
+      {comments.map(c => (
+        <div key={c.id} style={{
+          background: 'rgba(139,92,246,0.08)',
+          border: '1px solid rgba(139,92,246,0.15)',
+          borderRadius: '12px', padding: '10px 12px', flexShrink: 0,
+        }}>
+          <p style={{ color: '#a78bfa', fontSize: '11px', fontWeight: '700', marginBottom: '4px' }}>
+            @{c.username}
+          </p>
+          <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '13px', lineHeight: 1.4 }}>
+            {c.comment}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    {/* Input — fixed to bottom, always visible */}
+    <div style={{
+      flexShrink: 0,
+      padding: '12px 16px',
+      paddingBottom: 'max(16px, env(safe-area-inset-bottom))',
+      borderTop: '1px solid rgba(139,92,246,0.15)',
+      background: 'rgba(10,0,21,0.99)',
+      display: 'flex', gap: '6px', alignItems: 'center',
+    }}>
+      <input
+        value={username}
+        onChange={e => setUsername(e.target.value)}
+        placeholder="Name"
+        style={{
+          width: '80px', flexShrink: 0,
+          background: 'rgba(255,255,255,0.05)',
+          border: '1px solid rgba(139,92,246,0.2)',
+          borderRadius: '10px', padding: '10px 8px',
+          color: 'white', fontSize: '12px', outline: 'none',
+          boxSizing: 'border-box',
+        }}
+      />
+      <input
+        value={newComment}
+        onChange={e => setNewComment(e.target.value)}
+        onKeyDown={e => e.key === 'Enter' && handleComment()}
+        placeholder="Write a comment..."
+        style={{
+          flex: 1,
+          background: 'rgba(255,255,255,0.05)',
+          border: '1px solid rgba(139,92,246,0.3)',
+          borderRadius: '10px', padding: '10px 10px',
+          color: 'white', fontSize: '13px', outline: 'none',
+        }}
+      />
+      <button onClick={handleComment} style={{
+        background: 'linear-gradient(135deg, #7c3aed, #4f46e5)',
+        border: 'none', borderRadius: '10px',
+        padding: '10px 12px', color: 'white',
+        fontSize: '13px', fontWeight: '700',
+        cursor: 'pointer', flexShrink: 0,
+      }}>Post</button>
+    </div>
+  </div>
+       )}
     </div>
   )
 }
