@@ -213,9 +213,9 @@ function VideoCard({ video, isActive }) {
 
       {/* COMMENTS PANEL — fixed layout, input always visible */}
       {showComments && (
-  <div style={{
+        <div style={{
     position: 'fixed', bottom: 0, left: 0, right: 0,
-    height: '75vh',
+    height: '70vh',
     background: 'rgba(10,0,21,0.98)',
     border: '1px solid rgba(139,92,246,0.2)',
     borderRadius: '24px 24px 0 0',
@@ -242,7 +242,50 @@ function VideoCard({ video, isActive }) {
       }}>×</button>
     </div>
 
-    {/* Scrollable comments */}
+    {/* Input — TOP, always visible first */}
+    <div style={{
+      flexShrink: 0,
+      padding: '10px 16px',
+      borderBottom: '1px solid rgba(139,92,246,0.15)',
+      background: 'rgba(10,0,21,0.99)',
+      display: 'flex', gap: '6px', alignItems: 'center',
+    }}>
+      <input
+        value={username}
+        onChange={e => setUsername(e.target.value)}
+        placeholder="Name"
+        style={{
+          width: '75px', flexShrink: 0,
+          background: 'rgba(255,255,255,0.05)',
+          border: '1px solid rgba(139,92,246,0.2)',
+          borderRadius: '10px', padding: '10px 8px',
+          color: 'white', fontSize: '12px', outline: 'none',
+          boxSizing: 'border-box',
+        }}
+      />
+      <input
+        value={newComment}
+        onChange={e => setNewComment(e.target.value)}
+        onKeyDown={e => e.key === 'Enter' && handleComment()}
+        placeholder="Write a comment..."
+        style={{
+          flex: 1,
+          background: 'rgba(255,255,255,0.05)',
+          border: '1px solid rgba(139,92,246,0.3)',
+          borderRadius: '10px', padding: '10px 8px',
+          color: 'white', fontSize: '13px', outline: 'none',
+        }}
+      />
+      <button onClick={handleComment} style={{
+        background: 'linear-gradient(135deg, #7c3aed, #4f46e5)',
+        border: 'none', borderRadius: '10px',
+        padding: '10px 12px', color: 'white',
+        fontSize: '13px', fontWeight: '700',
+        cursor: 'pointer', flexShrink: 0,
+      }}>Post</button>
+    </div>
+
+    {/* Scrollable comments BELOW input */}
     <div style={{
       flex: 1, overflowY: 'auto',
       padding: '12px 16px',
@@ -270,50 +313,6 @@ function VideoCard({ video, isActive }) {
           </p>
         </div>
       ))}
-    </div>
-
-    {/* Input — fixed to bottom, always visible */}
-    <div style={{
-      flexShrink: 0,
-      padding: '12px 16px',
-      paddingBottom: 'max(16px, env(safe-area-inset-bottom))',
-      borderTop: '1px solid rgba(139,92,246,0.15)',
-      background: 'rgba(10,0,21,0.99)',
-      display: 'flex', gap: '6px', alignItems: 'center',
-    }}>
-      <input
-        value={username}
-        onChange={e => setUsername(e.target.value)}
-        placeholder="Name"
-        style={{
-          width: '80px', flexShrink: 0,
-          background: 'rgba(255,255,255,0.05)',
-          border: '1px solid rgba(139,92,246,0.2)',
-          borderRadius: '10px', padding: '10px 8px',
-          color: 'white', fontSize: '12px', outline: 'none',
-          boxSizing: 'border-box',
-        }}
-      />
-      <input
-        value={newComment}
-        onChange={e => setNewComment(e.target.value)}
-        onKeyDown={e => e.key === 'Enter' && handleComment()}
-        placeholder="Write a comment..."
-        style={{
-          flex: 1,
-          background: 'rgba(255,255,255,0.05)',
-          border: '1px solid rgba(139,92,246,0.3)',
-          borderRadius: '10px', padding: '10px 10px',
-          color: 'white', fontSize: '13px', outline: 'none',
-        }}
-      />
-      <button onClick={handleComment} style={{
-        background: 'linear-gradient(135deg, #7c3aed, #4f46e5)',
-        border: 'none', borderRadius: '10px',
-        padding: '10px 12px', color: 'white',
-        fontSize: '13px', fontWeight: '700',
-        cursor: 'pointer', flexShrink: 0,
-      }}>Post</button>
     </div>
   </div>
        )}
